@@ -2,19 +2,12 @@ import { PriorityQueue } from "./PriorityQueue";
 
 export class JobRunner {
     priorityQueue;
-    constructor(jobs) {
+    constructor() {
         this.priorityQueue = new PriorityQueue();
-        this.setJobs(jobs);
     }
 
-    getRandomPriority() {
-        return Math.floor(Math.random() * (10000 - 1)) + 1;
-    }
-
-    setJobs(jobs) {
-        jobs.forEach((job) => {
-            this.priorityQueue.enqueue(job, this.getRandomPriority());
-        })
+    setJob(job: any, priority: number) {
+            this.priorityQueue.enqueue(job, priority);
     }
 
     run() {
@@ -23,9 +16,8 @@ export class JobRunner {
         }
 
         while (!this.priorityQueue.isEmpty()) {
-            const item = this.priorityQueue.dequeue();
+            const item = this.priorityQueue.extractMax();
             item.run();
-            this.priorityQueue.enqueue(item.element, this.getRandomPriority());
         }
     }
 

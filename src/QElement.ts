@@ -1,13 +1,14 @@
 export class QElement {
     private element: any;
-    priority: any;
-    constructor(element, priority)
+    priority: number;
+    constructor(element: any, priority: number)
     {
         this.element = element;
         this.priority = priority;
     }
 
     run() {
-        console.log(`run job ${this.element}`);
+        this.element();
+        console.log(`run job with priority ${this.priority}`);
     }
 }

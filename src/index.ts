@@ -1,18 +1,15 @@
-const priorityQueue = new PriorityQueue();
+import { JobRunner } from "./JobRunner";
 
-console.log(priorityQueue.isEmpty());
-console.log(priorityQueue.front());
 
-priorityQueue.enqueue("Job 1", 2);
-priorityQueue.enqueue("Job 2", 1);
-priorityQueue.enqueue("Job 3", 1);
-
-console.log(priorityQueue.printPQueue());
-
-console.log(priorityQueue.front().element);
-
-console.log(priorityQueue.rear().element);
-
-const jobRunner = new JobRunner(['Job 1', 'Job 2', 'Job 3']);
+const jobRunner = new JobRunner();
+jobRunner.setJob(()=>{
+    console.log('do first job');
+}, 1);
+jobRunner.setJob(()=>{
+    console.log('do second job');
+}, 2);
+jobRunner.setJob(()=>{
+    console.log('do third job');
+}, 3);
 
 jobRunner.run();
